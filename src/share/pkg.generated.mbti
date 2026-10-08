@@ -1,0 +1,47 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/share"
+
+import {
+  "q2316367743/open-list/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct ShareApi {
+  // private fields
+}
+pub async fn ShareApi::create(Self, SharingUpdateRequest) -> @core.SharingResponse raise @core.OpenListError
+pub async fn ShareApi::delete(Self, String) -> Unit raise @core.OpenListError
+pub async fn ShareApi::disable(Self, String) -> Unit raise @core.OpenListError
+pub async fn ShareApi::enable(Self, String) -> Unit raise @core.OpenListError
+pub async fn ShareApi::get(Self, String) -> @core.SharingResponse raise @core.OpenListError
+pub async fn ShareApi::list(Self, page? : Int, per_page? : Int) -> @core.PageResult[@core.SharingResponse] raise @core.OpenListError
+pub fn ShareApi::new(@core.Client) -> Self
+pub async fn ShareApi::update(Self, SharingUpdateRequest) -> @core.SharingResponse raise @core.OpenListError
+
+pub struct SharingUpdateRequest {
+  files : Array[String]
+  expires : String?
+  pwd : String?
+  max_accessed : Int?
+  disabled : Bool?
+  remark : String?
+  readme : String?
+  header : String?
+  order_by : String?
+  order_direction : String?
+  extract_folder : String?
+  creator : String?
+  accessed : Int?
+  id : String?
+  new_id : String?
+} derive(ToJson)
+pub fn SharingUpdateRequest::new(Array[String], expires? : String, pwd? : String, max_accessed? : Int, disabled? : Bool, remark? : String, readme? : String, header? : String, order_by? : String, order_direction? : String, extract_folder? : String, creator? : String, accessed? : Int, id? : String, new_id? : String) -> Self
+pub fn SharingUpdateRequest::to_json(Self) -> Json
+
+// Type aliases
+
+// Traits

@@ -1,0 +1,29 @@
+// 根包是门面与编排层：把 core 与六个域子模块拼成一个 OpenListClient，
+// 并把公开类型用 pub using 再导出（见 reexport.mbt）。
+//
+// 使用者通常只需要 `import { "q2316367743/open-list" }`，
+// 域子模块与 core 都不用直接 import（要自定义请求可用 OpenListClient::request）。
+import {
+  "q2316367743/moonhttp",
+  "q2316367743/open-list/admin",
+  "q2316367743/open-list/auth",
+  "q2316367743/open-list/core",
+  "q2316367743/open-list/fs",
+  "q2316367743/open-list/public",
+  "q2316367743/open-list/share",
+  "q2316367743/open-list/user",
+}
+
+// 白盒测试：直接构造门面并注入 Mock 传输层，全程不联网。
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8",
+  "moonbitlang/core/json",
+  "q2316367743/moonhttp/transport",
+} for "wbtest"
+
+// 黑盒测试：只 import 根包，验证公开 API（含再导出、错误捕获）真的可用。
+import {
+  "moonbitlang/async",
+  "q2316367743/open-list" @lib,
+} for "test"

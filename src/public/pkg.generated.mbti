@@ -1,0 +1,28 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/public"
+
+import {
+  "q2316367743/open-list/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+type InitSetupBody derive(ToJson)
+pub fn InitSetupBody::to_json(Self) -> Json
+
+pub struct PublicApi {
+  // private fields
+}
+pub async fn PublicApi::archive_extensions(Self) -> Array[String] raise @core.OpenListError
+pub async fn PublicApi::init_setup(Self, String, String, site_title? : String) -> Unit raise @core.OpenListError
+pub async fn PublicApi::init_status(Self) -> @core.InitStatus raise @core.OpenListError
+pub fn PublicApi::new(@core.Client) -> Self
+pub async fn PublicApi::offline_download_tools(Self, path? : String) -> Array[String] raise @core.OpenListError
+pub async fn PublicApi::settings(Self) -> Map[String, String] raise @core.OpenListError
+
+// Type aliases
+
+// Traits

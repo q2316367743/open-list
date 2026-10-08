@@ -1,0 +1,16 @@
+// auth 是认证域：登录（明文 / 预哈希 / LDAP）、登出、两步验证，
+// 以及共享 token 状态的门面方法。
+//
+// 只依赖 core：请求管线、错误类型、容错解码都在 core 里。
+import {
+  "moonbitlang/core/json",
+  "q2316367743/moonhttp",
+  "q2316367743/open-list/core",
+}
+
+// 白盒测试用 Mock 传输层造响应，全程不联网。
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8",
+  "q2316367743/moonhttp/transport",
+} for "wbtest"

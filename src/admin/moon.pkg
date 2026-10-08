@@ -1,0 +1,14 @@
+// admin 是管理域：元数据、用户、存储、驱动、设置、索引。
+// 只依赖 core：请求管线、错误类型、容错解码都在 core 里。
+import {
+  "moonbitlang/core/json",
+  "q2316367743/moonhttp",
+  "q2316367743/open-list/core",
+}
+
+// 白盒测试用 Mock 传输层造响应，全程不联网。
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8",
+  "q2316367743/moonhttp/transport",
+} for "wbtest"

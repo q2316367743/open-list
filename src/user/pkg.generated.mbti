@@ -1,0 +1,39 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/user"
+
+import {
+  "q2316367743/open-list/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct AddSSHKeyRequest {
+  title : String
+  key : String
+} derive(ToJson)
+pub fn AddSSHKeyRequest::to_json(Self) -> Json
+
+pub struct UpdateMeRequest {
+  username : String
+  password : String?
+  sso_id : String?
+} derive(ToJson)
+pub fn UpdateMeRequest::new(String, password? : String, sso_id? : String) -> Self
+pub fn UpdateMeRequest::to_json(Self) -> Json
+
+pub struct UserApi {
+  // private fields
+}
+pub async fn UserApi::add_ssh_key(Self, String, String) -> Unit raise @core.OpenListError
+pub async fn UserApi::delete_ssh_key(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn UserApi::list_ssh_keys(Self, page? : Int, per_page? : Int) -> @core.PageResult[@core.SSHPublicKey] raise @core.OpenListError
+pub async fn UserApi::me(Self) -> @core.UserResponse raise @core.OpenListError
+pub fn UserApi::new(@core.Client) -> Self
+pub async fn UserApi::update(Self, UpdateMeRequest) -> Unit raise @core.OpenListError
+
+// Type aliases
+
+// Traits

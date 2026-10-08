@@ -1,0 +1,13 @@
+// 可运行的联调程序：连一台真实的 OpenList，从控制台读用户名密码，
+// 然后跑一遍各域的接口并把返回数据全部打印出来。
+//
+// 需要 `moonbitlang/async`（入口是 `async fn main`）、`stdio`（读写控制台）
+// 与 `utf8`（构造上传用的字节）。`Json` 是内置类型，不用 import json 包。
+import {
+  "moonbitlang/async",
+  "moonbitlang/async/stdio",
+  "moonbitlang/core/encoding/utf8",
+  "q2316367743/open-list" @lib,
+}
+
+pkgtype(kind: "executable")

@@ -1,0 +1,16 @@
+// fs 是文件系统域：目录浏览、搜索、文件管理、上传（含分片）与归档。
+// 只依赖 core：请求管线、错误类型、容错解码都在 core 里；
+// async/io 只用于「请求体是流」的类型引用（/fs/put、分片上传）。
+import {
+  "moonbitlang/async/io",
+  "moonbitlang/core/json",
+  "q2316367743/moonhttp",
+  "q2316367743/open-list/core",
+}
+
+// 白盒测试用 Mock 传输层造响应，全程不联网。
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8",
+  "q2316367743/moonhttp/transport",
+} for "wbtest"

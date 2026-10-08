@@ -1,0 +1,116 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list"
+
+import {
+  "q2316367743/moonhttp/config",
+  "q2316367743/moonhttp/transport",
+  "q2316367743/open-list/admin",
+  "q2316367743/open-list/auth",
+  "q2316367743/open-list/core",
+  "q2316367743/open-list/fs",
+  "q2316367743/open-list/public",
+  "q2316367743/open-list/share",
+  "q2316367743/open-list/user",
+}
+
+// Values
+pub fn create_open_list_client(@core.Settings, @core.Credentials) -> OpenListClient
+
+pub fn create_open_list_client_with_token(String, String) -> OpenListClient
+
+// Errors
+
+// Types and methods
+pub struct OpenListClient {
+  // private fields
+}
+pub fn OpenListClient::admin(Self) -> @admin.AdminApi
+pub fn OpenListClient::auth(Self) -> @auth.Auth
+pub fn OpenListClient::fs(Self) -> @fs.FileSystem
+pub fn OpenListClient::is_logged_in(Self) -> Bool
+pub fn OpenListClient::public(Self) -> @public.PublicApi
+pub async fn OpenListClient::request(Self, @config.Method, String, query? : Json, body? : Json, headers? : Array[(String, String)]) -> Json raise @core.OpenListError
+pub fn OpenListClient::set_token(Self, String?) -> Unit
+pub fn OpenListClient::settings(Self) -> @core.Settings
+pub fn OpenListClient::share(Self) -> @share.ShareApi
+pub fn OpenListClient::token(Self) -> String?
+pub fn OpenListClient::user(Self) -> @user.UserApi
+
+// Type aliases
+pub using @core {type ApiError}
+
+pub using @core {type ArchiveContent}
+
+pub using @core {type ArchiveMetaResponse}
+
+pub using @core {type Credentials}
+
+pub using @core {type DirResp}
+
+pub using @core {type DriverConfig}
+
+pub using @core {type DriverInfo}
+
+pub using @core {type DriverItem}
+
+pub using @fs {type FileHash}
+
+pub using @core {type FsGetResponse}
+
+pub using @core {type FsListResponse}
+
+pub using @core {type IndexProgress}
+
+pub using @core {type InitStatus}
+
+pub using @core {type Link}
+
+pub using @core {type ListSort}
+
+pub using @core {type Meta}
+
+pub using @config {type Method}
+
+pub using @core {type MultipartInitResponse}
+
+pub using @core {type ObjResp}
+
+pub using @core {type OpenListError}
+
+pub using @core {type PageResult}
+
+pub using @core {type PasswordCredentials}
+
+pub using @fs {type RenameObject}
+
+pub using @core {type SSHPublicKey}
+
+pub using @core {type SearchResult}
+
+pub using @core {type SessionSnapshot}
+
+pub using @core {type SettingItem}
+
+pub using @core {type Settings}
+
+pub using @core {type SharingResponse}
+
+pub using @share {type SharingUpdateRequest}
+
+pub using @core {type Storage}
+
+pub using @core {type StorageDetails}
+
+pub using @core {type TaskInfo}
+
+pub using @admin {type UpdateIndexRequest}
+
+pub using @user {type UpdateMeRequest}
+
+pub using @core {type User}
+
+pub using @core {type UserResponse}
+
+pub using @transport {trait Transport}
+
+// Traits

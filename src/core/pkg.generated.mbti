@@ -1,0 +1,420 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/core"
+
+import {
+  "moonbitlang/async/io",
+  "moonbitlang/core/debug",
+  "moonbitlang/core/json",
+  "q2316367743/moonhttp",
+  "q2316367743/moonhttp/config",
+  "q2316367743/moonhttp/transport",
+}
+
+// Values
+pub fn[T : @json.FromJson] array_field(Map[String, Json], String) -> Array[T]
+
+pub fn bool_field(Map[String, Json], String) -> Bool
+
+pub fn bytes_reader(Bytes) -> &@io.Reader
+
+pub fn[T : @json.FromJson] decode_data(Json) -> T raise OpenListError
+
+pub fn double_field(Map[String, Json], String) -> Double
+
+pub fn int64_field(Map[String, Json], String) -> Int64
+
+pub fn int64_from_json(Json) -> Int64?
+
+pub fn int_field(Map[String, Json], String) -> Int
+
+pub fn[T : @json.FromJson] json_field(Map[String, Json], String) -> T?
+
+pub fn[V : @json.FromJson] map_field(Map[String, Json], String) -> Map[String, V]
+
+pub fn page_pairs(page? : Int, per_page? : Int) -> Array[(String, Json?)]
+
+pub fn query_int(Int) -> Json
+
+pub fn query_json(Array[(String, Json?)]) -> Json
+
+pub fn query_string(String) -> Json
+
+pub fn string_field(Map[String, Json], String) -> String
+
+pub fn strip_nulls(Json) -> Json
+
+pub fn uint_field(Map[String, Json], String) -> UInt
+
+pub fn url_path_encode(String) -> String
+
+// Errors
+pub(all) suberror OpenListError {
+  Http(@moonhttp.HttpError)
+  Api(ApiError)
+  Decode(String)
+}
+pub fn OpenListError::code(Self) -> Int?
+pub fn OpenListError::message(Self) -> String
+pub fn OpenListError::status(Self) -> Int?
+
+// Types and methods
+pub struct ApiError {
+  code : Int
+  message : String
+  status : Int
+  data : Json?
+} derive(@debug.Debug)
+pub fn ApiError::to_repr(Self) -> @debug.Repr
+
+pub struct ArchiveContent {
+  obj : ObjResp
+  children : Array[ArchiveContent]
+}
+pub fn ArchiveContent::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for ArchiveContent
+
+pub struct ArchiveMetaResponse {
+  comment : String
+  encrypted : Bool
+  content : Array[ArchiveContent]
+  sort : ListSort?
+  raw_url : String
+  sign : String
+}
+pub fn ArchiveMetaResponse::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for ArchiveMetaResponse
+
+pub struct Client {
+  // private fields
+}
+pub fn Client::credentials(Self) -> Credentials
+pub async fn Client::ensure_token(Self) -> String raise OpenListError
+pub fn Client::is_logged_in(Self) -> Bool
+pub fn Client::new(Settings, Credentials, transport? : &@transport.Transport) -> Self
+pub async fn Client::password_login(Self, PasswordCredentials) -> String raise OpenListError
+pub async fn Client::request(Self, @config.Method, String, query? : Json, body? : Json, headers? : Array[(String, String)]) -> Json raise OpenListError
+pub async fn Client::send_form(Self, @config.Method, String, @config.FormData, headers? : Array[(String, String)]) -> Json raise OpenListError
+pub async fn Client::send_stream(Self, @config.Method, String, &@io.Reader, content_length? : Int, headers? : Array[(String, String)]) -> Json raise OpenListError
+pub fn Client::set_token(Self, String?) -> Unit
+pub fn Client::settings(Self) -> Settings
+pub fn Client::token(Self) -> String?
+
+pub(all) enum Credentials {
+  Token(String)
+  Password(PasswordCredentials)
+}
+pub fn Credentials::password(String, String, otp_code? : String) -> Self
+pub fn Credentials::token(String) -> Self
+
+pub struct DirResp {
+  name : String
+  modified : String
+}
+pub fn DirResp::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for DirResp
+
+pub struct DriverConfig {
+  name : String
+  local_sort : Bool
+  only_proxy : Bool
+  no_cache : Bool
+  no_upload : Bool
+  need_ms : Bool
+  default_root : String
+  alert : String
+  only_indices : Bool
+  prefer_proxy : Bool
+}
+pub fn DriverConfig::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for DriverConfig
+
+pub struct DriverInfo {
+  common : Array[DriverItem]
+  additional : Array[DriverItem]
+  config : DriverConfig
+}
+pub fn DriverInfo::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for DriverInfo
+
+pub struct DriverItem {
+  name : String
+  item_type : String
+  default : String
+  options : String
+  required : Bool
+  help : String
+}
+pub fn DriverItem::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for DriverItem
+
+pub struct FsGetResponse {
+  obj : ObjResp
+  raw_url : String
+  readme : String
+  header : String
+  provider : String
+  related : Array[ObjResp]
+}
+pub fn FsGetResponse::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for FsGetResponse
+
+pub struct FsListResponse {
+  content : Array[ObjResp]
+  total : Int64
+  readme : String
+  header : String
+  write : Bool
+  write_content_bypass : Bool
+  provider : String
+  direct_upload_tools : Array[String]
+}
+pub fn FsListResponse::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for FsListResponse
+
+pub struct IndexProgress {
+  obj_count : Int64
+  is_done : Bool
+  last_done_time : String?
+  error : String
+}
+pub fn IndexProgress::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for IndexProgress
+
+pub struct InitStatus {
+  initialized : Bool
+}
+pub fn InitStatus::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for InitStatus
+
+pub struct Link {
+  url : String
+  header : Map[String, Array[String]]
+  concurrency : Int
+  part_size : Int
+  content_length : Int64
+}
+pub fn Link::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for Link
+
+pub struct ListSort {
+  order_by : String
+  order_direction : String
+  extract_folder : String
+}
+pub fn ListSort::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for ListSort
+
+pub(all) struct Meta {
+  id : UInt
+  path : String
+  read_users : Array[UInt]
+  read_users_sub : Bool
+  write_users : Array[UInt]
+  write_users_sub : Bool
+  password : String
+  p_sub : Bool
+  write : Bool
+  w_sub : Bool
+  hide : String
+  h_sub : Bool
+  readme : String
+  r_sub : Bool
+  header : String
+  header_sub : Bool
+} derive(ToJson)
+pub fn Meta::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Meta::to_json(Self) -> Json
+pub impl @json.FromJson for Meta
+
+pub struct MultipartInitResponse {
+  snapshot : SessionSnapshot
+  resumed : Bool
+}
+pub fn MultipartInitResponse::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for MultipartInitResponse
+
+pub struct ObjResp {
+  name : String
+  size : Int64
+  is_dir : Bool
+  modified : String
+  created : String
+  sign : String
+  thumb : String
+  obj_type : Int
+  hashinfo : String
+  hash_info : Map[String, String]
+  mount_details : StorageDetails?
+}
+pub fn ObjResp::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for ObjResp
+
+pub struct PageResult[T] {
+  content : Array[T]
+  total : Int64
+}
+pub fn[T : @json.FromJson] PageResult::from_json(Json, @json.JsonPath) -> Self[T] raise @json.JsonDecodeError
+pub fn[T] PageResult::new(Array[T], Int64) -> Self[T]
+pub impl[T : @json.FromJson] @json.FromJson for PageResult[T]
+
+pub struct PasswordCredentials {
+  username : String
+  password : String
+  otp_code : String?
+}
+pub fn PasswordCredentials::new(String, String, otp_code? : String) -> Self
+
+pub struct SSHPublicKey {
+  id : UInt
+  title : String
+  fingerprint : String
+  added_time : String
+  last_used_time : String
+}
+pub fn SSHPublicKey::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for SSHPublicKey
+
+pub struct SearchResult {
+  parent : String
+  name : String
+  is_dir : Bool
+  size : Int64
+  obj_type : Int
+}
+pub fn SearchResult::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for SearchResult
+
+pub struct SessionSnapshot {
+  upload_id : String
+  state : String
+  attempt : Int
+  path : String
+  size : Int64
+  chunk_size : Int64
+  total_chunks : Int
+  received : Array[Array[Int]]
+  received_bytes : Int64
+  frontier : Int
+  storage_progress : Double
+  error : String?
+}
+pub fn SessionSnapshot::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for SessionSnapshot
+
+pub(all) struct SettingItem {
+  key : String
+  value : String
+  help : String
+  item_type : String
+  options : String
+  group : Int
+  flag : Int
+  index : UInt
+}
+pub fn SettingItem::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn SettingItem::to_json(Self) -> Json
+pub impl ToJson for SettingItem
+pub impl @json.FromJson for SettingItem
+
+pub struct Settings {
+  base_url : String
+  timeout : Int?
+}
+pub fn Settings::new(String, timeout? : Int) -> Self
+
+pub struct SharingResponse {
+  id : String
+  expires : String?
+  pwd : String
+  accessed : Int
+  max_accessed : Int
+  disabled : Bool
+  remark : String
+  readme : String
+  header : String
+  order_by : String
+  order_direction : String
+  extract_folder : String
+  files : Array[String]
+  creator : String
+  creator_role : Int
+}
+pub fn SharingResponse::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for SharingResponse
+
+pub(all) struct Storage {
+  id : UInt
+  mount_path : String
+  order : Int
+  driver : String
+  cache_expiration : Int
+  custom_cache_policies : String
+  status : String
+  addition : String
+  remark : String
+  modified : String
+  disabled : Bool
+  disable_index : Bool
+  enable_sign : Bool
+  order_by : String
+  order_direction : String
+  extract_folder : String
+  web_proxy : Bool
+  webdav_policy : String
+  proxy_range : Bool
+  down_proxy_url : String
+  disable_proxy_sign : Bool
+} derive(ToJson)
+pub fn Storage::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn Storage::to_json(Self) -> Json
+pub impl @json.FromJson for Storage
+
+pub struct StorageDetails {
+  driver_name : String
+  total_space : Int64
+  free_space : Int64
+}
+pub fn StorageDetails::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for StorageDetails
+
+pub struct TaskInfo {
+  id : String
+  name : String
+  creator : String
+  creator_role : Int
+  state : String
+  status : String
+  progress : Double
+  start_time : String?
+  end_time : String?
+  total_bytes : Int64
+  error : String
+}
+pub fn TaskInfo::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for TaskInfo
+
+pub(all) struct User {
+  id : UInt
+  username : String
+  password : String
+  base_path : String
+  role : Int
+  disabled : Bool
+  permission : Int
+  sso_id : String
+  allow_ldap : Bool
+} derive(ToJson)
+pub fn User::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub fn User::to_json(Self) -> Json
+pub impl @json.FromJson for User
+
+pub struct UserResponse {
+  user : User
+  otp : Bool
+}
+pub fn UserResponse::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for UserResponse
+
+// Type aliases
+
+// Traits

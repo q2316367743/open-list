@@ -1,0 +1,111 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/main"
+
+import {
+  "q2316367743/moonhttp/config",
+  "q2316367743/open-list",
+  "q2316367743/open-list/core",
+}
+
+// Values
+pub fn archive_summary(@core.ArchiveMetaResponse) -> String
+
+pub fn brief(String, Int) -> String
+
+pub async fn[T] check(String, String, Result[T, @core.OpenListError], (T) -> String) -> T?
+
+pub async fn check_admin(@open-list.OpenListClient) -> Unit
+
+pub async fn check_admin_more(@open-list.OpenListClient) -> Unit
+
+pub async fn check_fs_read(@open-list.OpenListClient, String) -> Array[@core.ObjResp]
+
+pub async fn check_public(@open-list.OpenListClient, String) -> Unit
+
+pub async fn check_share(@open-list.OpenListClient) -> Unit
+
+pub async fn check_user(@open-list.OpenListClient) -> @core.User?
+
+pub async fn check_write(@open-list.OpenListClient, String, Bool) -> Unit
+
+pub fn dir_summary(@core.DirResp) -> String
+
+pub fn driver_item_summary(@core.DriverItem) -> String
+
+pub fn driver_summary(String, @core.DriverInfo) -> String
+
+pub async fn dump_raw(@open-list.OpenListClient, @config.Method, String, query? : Json, body? : Json) -> Unit
+
+pub fn entry_lines(Array[@core.ObjResp]) -> String
+
+pub fn index_summary(@core.IndexProgress) -> String
+
+pub fn init_summary(@core.MultipartInitResponse) -> String
+
+pub fn joined(Array[String]) -> String
+
+pub fn meta_summary(@core.Meta) -> String
+
+pub fn name_list(Array[@core.ObjResp]) -> String
+
+pub fn obj_summary(@core.ObjResp) -> String
+
+pub fn opt_str(String?) -> String
+
+pub async fn read_line(String) -> String
+
+pub async fn report_summary() -> Unit
+
+pub fn role_name(Int) -> String
+
+pub async fn say(String) -> Unit
+
+pub fn search_summary(@core.SearchResult) -> String
+
+pub async fn section(String) -> Unit
+
+pub fn setting_summary(@core.SettingItem) -> String
+
+pub fn sharing_summary(@core.SharingResponse) -> String
+
+pub async fn skip(String, String, String) -> Unit
+
+pub fn snapshot_summary(@core.SessionSnapshot) -> String
+
+pub fn sshkey_summary(@core.SSHPublicKey) -> String
+
+pub async fn step(String) -> Unit
+
+pub fn storage_summary(@core.Storage) -> String
+
+pub fn[T] take(Array[T], Int) -> Array[T]
+
+pub fn task_list_summary(Array[@core.TaskInfo]) -> String
+
+pub fn task_result(@core.TaskInfo?) -> String
+
+pub fn task_summary(@core.TaskInfo) -> String
+
+pub fn user_summary(@core.User) -> String
+
+// Errors
+
+// Types and methods
+pub struct CaseResult {
+  seq : Int
+  api : String
+  label : String
+  status : CaseStatus
+  detail : String
+}
+
+pub enum CaseStatus {
+  Passed
+  Failed
+  Skipped
+}
+pub fn CaseStatus::name(Self) -> String
+
+// Type aliases
+
+// Traits

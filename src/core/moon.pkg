@@ -1,0 +1,23 @@
+// core 是六个域子模块共享的地基：连接设置、凭证、统一响应信封、错误类型、
+// JSON 解码助手，以及唯一真正发送 HTTP 请求的 Client。
+//
+// 它只依赖 moonhttp 与 core 库，**不** import 任何域子模块——依赖方向是
+// 根包 → 域子模块 → core 的单向 DAG，因此六个域子模块之间也不会成环。
+// core/ref 用于让 Client 的副本共享同一份 token 状态；
+// async/io 只作为流式请求体的类型引用（二进制上传要用）。
+import {
+  "moonbitlang/async/io",
+  "moonbitlang/core/debug",
+  "moonbitlang/core/encoding/percent",
+  "moonbitlang/core/json",
+  "moonbitlang/core/ref",
+  "q2316367743/moonhttp",
+}
+
+// 白盒测试用 Mock 传输层造响应，全程不联网；
+// core/encoding/utf8 用来把测试里的 JSON 文本变成响应体字节。
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8",
+  "q2316367743/moonhttp/transport",
+} for "wbtest"

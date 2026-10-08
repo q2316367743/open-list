@@ -1,0 +1,63 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/fs"
+
+import {
+  "moonbitlang/async/io",
+  "q2316367743/open-list/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct FileHash {
+  md5 : String?
+  sha1 : String?
+  sha256 : String?
+}
+pub fn FileHash::new(md5? : String, sha1? : String, sha256? : String) -> Self
+
+pub struct FileSystem {
+  // private fields
+}
+pub async fn FileSystem::add_offline_download(Self, String, Array[String], tool? : String) -> Array[@core.TaskInfo] raise @core.OpenListError
+pub async fn FileSystem::archive_decompress(Self, String, String, Array[String], archive_pass? : String, inner_path? : String, cache_full? : Bool, put_into_new_dir? : Bool, overwrite? : Bool) -> Array[@core.TaskInfo] raise @core.OpenListError
+pub async fn FileSystem::archive_list(Self, String, inner_path? : String, password? : String, refresh? : Bool, archive_pass? : String, page? : Int, per_page? : Int) -> @core.PageResult[@core.ArchiveContent] raise @core.OpenListError
+pub async fn FileSystem::archive_meta(Self, String, password? : String, refresh? : Bool, archive_pass? : String) -> @core.ArchiveMetaResponse raise @core.OpenListError
+pub async fn FileSystem::batch_rename(Self, String, Array[RenameObject]) -> Unit raise @core.OpenListError
+pub async fn FileSystem::copy(Self, String, String, Array[String], overwrite? : Bool, skip_existing? : Bool, merge? : Bool) -> Unit raise @core.OpenListError
+pub async fn FileSystem::create_link(Self, String) -> @core.Link raise @core.OpenListError
+pub async fn FileSystem::dirs(Self, path? : String, password? : String, force_root? : Bool) -> Array[@core.DirResp] raise @core.OpenListError
+pub async fn FileSystem::get(Self, String, password? : String) -> @core.FsGetResponse raise @core.OpenListError
+pub async fn FileSystem::list(Self, String, password? : String, refresh? : Bool, page? : Int, per_page? : Int) -> @core.FsListResponse raise @core.OpenListError
+pub async fn FileSystem::mkdir(Self, String) -> Unit raise @core.OpenListError
+pub async fn FileSystem::move_to(Self, String, String, Array[String], overwrite? : Bool, skip_existing? : Bool, merge? : Bool) -> Unit raise @core.OpenListError
+pub async fn FileSystem::multipart_abort(Self, String) -> Unit raise @core.OpenListError
+pub async fn FileSystem::multipart_chunk(Self, String, Int, Bytes) -> @core.SessionSnapshot raise @core.OpenListError
+pub async fn FileSystem::multipart_complete(Self, String) -> @core.SessionSnapshot raise @core.OpenListError
+pub async fn FileSystem::multipart_init(Self, String, Int64, chunk_size? : Int, overwrite? : Bool, content_type? : String, last_modified? : Int64, hash? : FileHash) -> @core.MultipartInitResponse raise @core.OpenListError
+pub async fn FileSystem::multipart_status(Self, String) -> @core.SessionSnapshot raise @core.OpenListError
+pub async fn FileSystem::multipart_status_by_path(Self, String, Int64) -> @core.SessionSnapshot raise @core.OpenListError
+pub async fn FileSystem::multipart_upload(Self, String, Bytes, chunk_size? : Int, overwrite? : Bool, content_type? : String, hash? : FileHash) -> @core.SessionSnapshot raise @core.OpenListError
+pub fn FileSystem::new(@core.Client) -> Self
+pub async fn FileSystem::other(Self, String, String, data? : Json, password? : String) -> Json raise @core.OpenListError
+pub async fn FileSystem::put(Self, String, &@io.Reader, content_length? : Int, overwrite? : Bool, as_task? : Bool, content_type? : String, last_modified? : Int64, hash? : FileHash) -> @core.TaskInfo? raise @core.OpenListError
+pub async fn FileSystem::put_bytes(Self, String, Bytes, overwrite? : Bool, as_task? : Bool, content_type? : String, last_modified? : Int64, hash? : FileHash) -> @core.TaskInfo? raise @core.OpenListError
+pub async fn FileSystem::put_form(Self, String, String, Bytes, overwrite? : Bool, as_task? : Bool, content_type? : String, last_modified? : Int64, hash? : FileHash) -> @core.TaskInfo? raise @core.OpenListError
+pub async fn FileSystem::recursive_move(Self, String, String, conflict_policy? : String) -> Unit raise @core.OpenListError
+pub async fn FileSystem::regex_rename(Self, String, String, String) -> Unit raise @core.OpenListError
+pub async fn FileSystem::remove(Self, String, Array[String]) -> Unit raise @core.OpenListError
+pub async fn FileSystem::remove_empty_directory(Self, String) -> Unit raise @core.OpenListError
+pub async fn FileSystem::rename(Self, String, String, overwrite? : Bool) -> Unit raise @core.OpenListError
+pub async fn FileSystem::search(Self, String, String, scope? : Int, page? : Int, per_page? : Int, password? : String) -> @core.PageResult[@core.SearchResult] raise @core.OpenListError
+
+pub struct RenameObject {
+  src_name : String
+  new_name : String
+}
+pub fn RenameObject::new(String, String) -> Self
+
+// Type aliases
+
+// Traits

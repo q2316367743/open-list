@@ -1,0 +1,50 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/auth"
+
+import {
+  "moonbitlang/core/json",
+  "q2316367743/open-list/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct Auth {
+  // private fields
+}
+pub async fn Auth::generate_2fa(Self) -> TwoFactorAuth raise @core.OpenListError
+pub fn Auth::is_logged_in(Self) -> Bool
+pub async fn Auth::login(Self, String, String, otp_code? : String) -> String raise @core.OpenListError
+pub async fn Auth::login_hash(Self, String, String, otp_code? : String) -> String raise @core.OpenListError
+pub async fn Auth::login_ldap(Self, String, String, otp_code? : String) -> String raise @core.OpenListError
+pub async fn Auth::logout(Self) -> Unit raise @core.OpenListError
+pub fn Auth::new(@core.Client) -> Self
+pub fn Auth::set_token(Self, String?) -> Unit
+pub fn Auth::token(Self) -> String?
+pub async fn Auth::verify_2fa(Self, String, String) -> Unit raise @core.OpenListError
+
+pub struct LoginBody {
+  username : String
+  password : String
+  otp_code : String?
+} derive(ToJson)
+pub fn LoginBody::to_json(Self) -> Json
+
+pub struct TwoFactorAuth {
+  qr : String
+  secret : String
+}
+pub fn TwoFactorAuth::from_json(Json, @json.JsonPath) -> Self raise @json.JsonDecodeError
+pub impl @json.FromJson for TwoFactorAuth
+
+pub struct VerifyTwoFactorRequest {
+  code : String
+  secret : String
+} derive(ToJson)
+pub fn VerifyTwoFactorRequest::to_json(Self) -> Json
+
+// Type aliases
+
+// Traits

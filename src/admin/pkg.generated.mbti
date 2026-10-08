@@ -1,0 +1,63 @@
+// Generated using `moon info`, DON'T EDIT IT
+package "q2316367743/open-list/admin"
+
+import {
+  "q2316367743/open-list/core",
+}
+
+// Values
+
+// Errors
+
+// Types and methods
+pub struct AdminApi {
+  // private fields
+}
+pub async fn AdminApi::cancel_2fa(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::create_meta(Self, @core.Meta) -> Unit raise @core.OpenListError
+pub async fn AdminApi::create_storage(Self, @core.Storage) -> UInt raise @core.OpenListError
+pub async fn AdminApi::create_user(Self, @core.User) -> Unit raise @core.OpenListError
+pub async fn AdminApi::default_settings(Self, group? : Int, groups? : Array[Int]) -> Array[@core.SettingItem] raise @core.OpenListError
+pub async fn AdminApi::del_cache(Self, String) -> Unit raise @core.OpenListError
+pub async fn AdminApi::delete_meta(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::delete_setting(Self, String) -> Unit raise @core.OpenListError
+pub async fn AdminApi::delete_storage(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::delete_user(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::delete_user_ssh_key(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::disable_storage(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::driver_info(Self, String) -> @core.DriverInfo raise @core.OpenListError
+pub async fn AdminApi::driver_names(Self) -> Array[String] raise @core.OpenListError
+pub async fn AdminApi::enable_storage(Self, UInt) -> Unit raise @core.OpenListError
+pub async fn AdminApi::get_meta(Self, UInt) -> @core.Meta raise @core.OpenListError
+pub async fn AdminApi::get_setting(Self, String) -> @core.SettingItem raise @core.OpenListError
+pub async fn AdminApi::get_settings(Self, Array[String]) -> Array[@core.SettingItem] raise @core.OpenListError
+pub async fn AdminApi::get_storage(Self, UInt) -> @core.Storage raise @core.OpenListError
+pub async fn AdminApi::get_user(Self, UInt) -> @core.User raise @core.OpenListError
+pub async fn AdminApi::index_build(Self) -> Unit raise @core.OpenListError
+pub async fn AdminApi::index_clear(Self) -> Unit raise @core.OpenListError
+pub async fn AdminApi::index_progress(Self) -> @core.IndexProgress raise @core.OpenListError
+pub async fn AdminApi::index_stop(Self) -> Unit raise @core.OpenListError
+pub async fn AdminApi::index_update(Self, Array[String], max_depth? : Int) -> Unit raise @core.OpenListError
+pub async fn AdminApi::list_drivers(Self) -> Map[String, @core.DriverInfo] raise @core.OpenListError
+pub async fn AdminApi::list_meta(Self, page? : Int, per_page? : Int) -> @core.PageResult[@core.Meta] raise @core.OpenListError
+pub async fn AdminApi::list_settings(Self, group? : Int, groups? : Array[Int]) -> Array[@core.SettingItem] raise @core.OpenListError
+pub async fn AdminApi::list_storages(Self, page? : Int, per_page? : Int) -> @core.PageResult[@core.Storage] raise @core.OpenListError
+pub async fn AdminApi::list_user_ssh_keys(Self, UInt, page? : Int, per_page? : Int) -> @core.PageResult[@core.SSHPublicKey] raise @core.OpenListError
+pub async fn AdminApi::list_users(Self, page? : Int, per_page? : Int) -> @core.PageResult[@core.User] raise @core.OpenListError
+pub async fn AdminApi::load_all_storages(Self) -> Unit raise @core.OpenListError
+pub fn AdminApi::new(@core.Client) -> Self
+pub async fn AdminApi::reset_token(Self) -> String raise @core.OpenListError
+pub async fn AdminApi::save_settings(Self, Array[@core.SettingItem]) -> Unit raise @core.OpenListError
+pub async fn AdminApi::update_meta(Self, @core.Meta) -> Unit raise @core.OpenListError
+pub async fn AdminApi::update_storage(Self, @core.Storage) -> Unit raise @core.OpenListError
+pub async fn AdminApi::update_user(Self, @core.User) -> Unit raise @core.OpenListError
+
+pub(all) struct UpdateIndexRequest {
+  paths : Array[String]
+  max_depth : Int
+} derive(ToJson)
+pub fn UpdateIndexRequest::to_json(Self) -> Json
+
+// Type aliases
+
+// Traits

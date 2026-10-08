@@ -1,0 +1,14 @@
+// user 是「当前登录用户」域：查看/修改自己的资料、管理自己的 SSH 公钥。
+// 只依赖 core：请求管线、错误类型、容错解码都在 core 里。
+import {
+  "moonbitlang/core/json",
+  "q2316367743/moonhttp",
+  "q2316367743/open-list/core",
+}
+
+// 白盒测试用 Mock 传输层造响应，全程不联网。
+import {
+  "moonbitlang/async",
+  "moonbitlang/core/encoding/utf8",
+  "q2316367743/moonhttp/transport",
+} for "wbtest"

@@ -16,6 +16,7 @@ MoonBit 版 OpenList API 客户端：一个门面（`OpenListClient`）+ 六个�
 | [07](./07-json-modeling.md) | JSON 建模约定 | 信封、`derive` 的实测语义、`null` 剔除、手写 `FromJson` 的场景 |
 | [08](./08-unsupported-endpoints.md) | 未封装的端点 | SSO / WebAuthn / 任务域 / 扫描 / 种子等，以及逃生通道用法 |
 | [09](./09-manual-integration-test.md) | 真机联调程序 | `moon run src/main` 的用法（永久 token 模式）、输出含义、执行流程与写入自测的边界 |
+| [10](./10-ci-and-release.md) | CI 与发布 | 两个 GitHub Actions 工作流：检查 / 构建 / 测试门禁，Release 触发发布到 mooncakes.io 的完整流程 |
 
 代码结构（`src/`）：
 

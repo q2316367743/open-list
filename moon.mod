@@ -7,7 +7,7 @@ version = "0.1.0"
 
 readme = "README.mbt.md"
 
-repository = ""
+repository = "https://github.com/q2316367743/open-list"
 
 license = "Apache-2.0"
 
